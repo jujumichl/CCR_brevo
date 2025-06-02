@@ -1,12 +1,12 @@
 <?php
 //Inlcusion des fichiers Utiles pour le traitement des csv et interaction avec l'API
-require_once(__DIR__ . '\\Utils_csv.php');
-require_once(__DIR__ . '\\Utils_API.php');
+require_once __DIR__ . '\\Utils_csv.php';
+require_once __DIR__ . '\\Utils_API.php';
 
 //Initialisation des variables
 $adherent = new Adherents();
 $listId = 3;
-$chemin = dirname(__DIR__, 1) . "\\fichier";
+$chemin = __DIR__;
 $apikey = file_get_contents($chemin . "\\API_key.txt");
 $adhesion = $chemin . "\\Adhésions KKR-2024-2025(Adhésions)1(in).csv";
 $valide = $chemin . "\\Valides.csv";

@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ ."\Utils_csv.php");
+require_once __DIR__ ."\Utils_csv.php";
 /**
  * Class de gestion des adhérents, ajout d'adhérents a une liste, récupération des emails adhérents
  * dans une liste, récupération des adérents présent dans une liste,
