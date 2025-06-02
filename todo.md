@@ -1,0 +1,6 @@
+- [x] Regarder l'année en cours et ne prendre que les adhérents sur cette année
+- [x] Ne prendre que les utilisateurs qui n'ont que 1 dans la colonne Nbr
+- [] Import des fichier via une interface H/M
+- [] Interface H/M
+- [] Download fichier Invalide.csv & verification OU afficher ce qui se trouve dans les fichiers
+- [x] Revoir la vérification des contacts
