@@ -1,6 +1,12 @@
 <!-- Formulaire permmettant d'upload un fichier CSV-->
-<form action="utils/upload.php " method="post" enctype="multipart/form-data">
-  Select CSV to upload:
+<form action="index.php?uc=upload" method="post" enctype="multipart/form-data">
+  Veuillez séléctionner votre fichier excel au format CSV:
   <input type="file" name="fileToUpload" id="fileToUpload">
   <input type="submit" value="Upload CSV" name="submit">
+</form>
+<form action="index.php?uc=listandAPI" method="post">
+    <label for="list">Veuillez entrer votre clé API de brevo :</label><br>
+    <input class="input is-rounded has-background-white has-text-black" type="password" id="list" name="list" value=""/><br>
+    <label for="API">Veuillez entrer l'identifiant de la liste Brevo a laquelle vous souhaitez ajouter votre liste de contact : </label><br>
+    <input type="number" id="quantity" name="quantity" min="0" max="20000">
 </form>

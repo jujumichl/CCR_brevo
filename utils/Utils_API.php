@@ -168,7 +168,7 @@ class Adherents{
      * @return int Code HTTP de la réponse de l'API.
      * @throws Exception En cas d'erreur cURL ou d'erreur HTTP lors de l'import.
      */
-    function addContact(string $csvContent, string $apikey, int $listId): int {
+    function addContact(string $csvContent, string $apikey, int $listId): array {
         // URL de l'endpoint API pour importer des contacts
         $contactsUrlImport = "https://api.brevo.com/v3/contacts/import";
 
@@ -216,7 +216,7 @@ class Adherents{
         curl_close($curl);
 
         // Retourne le code HTTP (utile pour une gestion plus fine après l'appel)
-        return $httpCode;
+        return array($httpCode, $response);
     }
 
     function checkContact(array $csvContent, array $emails, array $noms, array $prenoms){
