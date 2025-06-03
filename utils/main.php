@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__DIR__, 1) . '\\utils\\Utils_csv.php';
+require_once dirname(__DIR__, 1) . '\\utils\\Utils_API.php';
 function main($target_file, $listId, $apikey){
     $chemin = dirname(__DIR__, 1) . '\\fichier';
     $valide = $chemin . "\\Valides.csv";
@@ -27,7 +29,6 @@ function main($target_file, $listId, $apikey){
 
     if ($status){
         echo "Traitement terminé :<br>";
-        echo "- Valides : " . $valide . "<br>";
         echo "- Invalides : " . $invalide . "<br>";
 
         //Récupération des colonnes qui nous intéresses
@@ -46,8 +47,10 @@ function main($target_file, $listId, $apikey){
             $httpCode = $res[0];
             $response = $res[1];
             $check = $adherent->checkContact($csvArray, $email, $nom, $prenom);
-            echo $check;
-            echo "- Vérification : " . $verification . "<br>";
+            if (!empty($check)) {
+                echo "- Vérification : " . $verification . "<br>";
+                echo "Attention tous les contacts n'ont pas été importer";
+            }
 
             // Gestion des erreurs HTTP >= 400 (échecs)
             if ($httpCode >= 400) {
