@@ -12,8 +12,7 @@ function main($target_file, $listId, $apikey){
         $valide,
         $invalide
     );
-    //Suppression du fichier des adhérents
-    unlink($target_file);
+    
 
     
     //Initialisation des variables
@@ -34,8 +33,6 @@ function main($target_file, $listId, $apikey){
         //Récupération des colonnes qui nous intéresses
         $csvArray = getNPTMA($valide);
         if ($csvArray) {
-            //suppression du fichier valide
-            unlink($valide);
             //Renommage des colonnes
             $csvColumnRightName = renameRightColumn($csvArray);
 
@@ -65,6 +62,10 @@ function main($target_file, $listId, $apikey){
                 // Sinon on affiche le code HTTP reçu (autres réponses possibles)
                 echo "Réponse HTTP $httpCode reçue\n";
             }
+            //suppression du fichier valide
+            unlink($valide);
+            //Suppression du fichier des adhérents
+            unlink($target_file);
         }
         else {
             throw new Exception("Impossible d'ouvrir le fichier CSV, veuillez vérifier l'extension ainsi que l'intégrité des données.");
