@@ -115,14 +115,21 @@ function arrayTOstring($arrays){
  * Écrit un tableau de données dans un fichier CSV
  */
 function ecrireCsv($cheminFichier, $donnees, $entetes = [], $separateur = ',') {
-  $f = fopen($cheminFichier, 'w');
-  if ($entetes) {
-      fputcsv($f, $entetes, $separateur);
-  }
-  foreach ($donnees as $ligne) {
-      fputcsv($f, $ligne, $separateur);
-  }
-  fclose($f);
+    $dir = dirname($cheminFichier);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+    }
+    $f = fopen($cheminFichier, 'w');
+    if ($f === false) {
+        die("Impossible d'ouvrir le fichier pour écriture : $cheminFichier");
+    }
+    if ($entetes) {
+        fputcsv($f, $entetes, $separateur);
+    }
+    foreach ($donnees as $ligne) {
+        fputcsv($f, $ligne, $separateur);
+    }
+    fclose($f);
 }
 
 /**

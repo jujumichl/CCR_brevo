@@ -12,7 +12,7 @@ switch ($uc) {
     case 'upload':        
         include __DIR__ . "\\utils\\upload.php";
         if ($upload){
-            $idList = htmlspecialchars($_POST['idlist']);
+            $idList = is_numeric($_POST['idlist']);
             $apiKey = htmlspecialchars($_POST['API']);
             $csvPath = $upload[1];
             include __DIR__ . '\\utils\\main.php';

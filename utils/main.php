@@ -1,18 +1,17 @@
 <?php
-function getChemin(){return __DIR__ . "\\fichier";} 
-function getValide(){return getChemin() . "\\Valides.csv";}
-function getInvalide(){return getChemin() . "\\Invalides.csv";}
-function getVerification() {return getChemin() . "\\verification.csv";}
-
 function main($target_file, $listId, $apikey){
+    $chemin = dirname(__DIR__, 1) . '\\fichier';
+    $valide = $chemin . "\\Valides.csv";
+    $invalide = $chemin . "\\Invalides.csv";
+    $verification = $chemin . "\\verification.csv";
     //Vérification des contacts et classification de ces derniers
     $status = verifierContactEtClasser(
         $target_file,
-        getValide(),
-        getInvalide()
+        $valide,
+        $invalide
     );
     //Suppression du fichier des adhérents
-    //unlink($target_file);
+    unlink($target_file);
 
     
     //Initialisation des variables
@@ -28,14 +27,14 @@ function main($target_file, $listId, $apikey){
 
     if ($status){
         echo "Traitement terminé :<br>";
-        echo "- Valides : " . getValide() . "<br>";
-        echo "- Invalides : " . getInvalide() . "<br>";
+        echo "- Valides : " . $valide . "<br>";
+        echo "- Invalides : " . $invalide . "<br>";
 
         //Récupération des colonnes qui nous intéresses
-        $csvArray = getNPTMA(getValide());
+        $csvArray = getNPTMA($valide);
         if ($csvArray) {
             //suppression du fichier valide
-            //unlink(getValide());
+            unlink($valide);
             //Renommage des colonnes
             $csvColumnRightName = renameRightColumn($csvArray);
 
@@ -48,7 +47,7 @@ function main($target_file, $listId, $apikey){
             $response = $res[1];
             $check = $adherent->checkContact($csvArray, $email, $nom, $prenom);
             echo $check;
-            echo "- Vérification : " . getVerification() . "<br>";
+            echo "- Vérification : " . $verification . "<br>";
 
             // Gestion des erreurs HTTP >= 400 (échecs)
             if ($httpCode >= 400) {
