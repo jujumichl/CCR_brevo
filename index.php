@@ -9,14 +9,18 @@ include __DIR__ . '\\utils\\utils.php';
 
 $uc = lireDonneeUrl('uc');
 switch ($uc) {
-    case 'upload':
+    case 'upload':        
         include __DIR__ . "\\utils\\upload.php";
         if ($upload){
+            $idList = htmlspecialchars($_POST['idlist']);
+            $apiKey = htmlspecialchars($_POST['API']);
+            $csvPath = $upload[1];
             include __DIR__ . '\\utils\\main.php';
-            main($upload[1], $listId, $apikey);
+            main($csvPath, $idList, $apiKey);
         }
         else {
             echo "Désolé, il y a eu une erreur lors du téléchargement de votre fichier. Vérifiez que votre fichier est bien au format CSV";
         }
+        break;
 }
 

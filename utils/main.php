@@ -12,8 +12,9 @@ function main($target_file, $listId, $apikey){
         getInvalide()
     );
     //Suppression du fichier des adhérents
-    unlink($target_file);
+    //unlink($target_file);
 
+    
     //Initialisation des variables
     $adherent = new Adherents();
     $allContact = $adherent->getAllContacts($listId, $apikey);
@@ -34,7 +35,7 @@ function main($target_file, $listId, $apikey){
         $csvArray = getNPTMA(getValide());
         if ($csvArray) {
             //suppression du fichier valide
-            unlink(getValide());
+            //unlink(getValide());
             //Renommage des colonnes
             $csvColumnRightName = renameRightColumn($csvArray);
 

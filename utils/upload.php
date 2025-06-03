@@ -15,7 +15,6 @@ function upload(): array|bool{
         
     }
     else {
-        echo "Désolé, il y a eu une erreur lors du téléchargement de votre fichier. Vérifiez que votre fichier est bien au format CSV";
         return false;
     }
 }
