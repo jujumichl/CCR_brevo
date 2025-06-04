@@ -1,6 +1,14 @@
 <?php
 require_once dirname(__DIR__, 1) . '\\utils\\Utils_csv.php';
 require_once dirname(__DIR__, 1) . '\\utils\\Utils_API.php';
+
+/**
+ * Programme principale
+ * @param mixed $target_file chemin du fichier donner dans le formulaire
+ * @param mixed $listId Identifiant de la liste
+ * @param mixed $apikey clé de d'accès a l'api
+ * @throws \Exception Lève une erreur s'il y a un code http suppérieur a 400
+ */
 function main($target_file, $listId, $apikey){
     $chemin = dirname(__DIR__, 1) . '\\fichier';
     $valide = $chemin . "\\Valides.csv";
@@ -27,9 +35,9 @@ function main($target_file, $listId, $apikey){
     
 
     if ($status){
-        echo "Traitement terminé :<br>";
-        echo "- Invalides : " . $invalide . "<br>";
-
+        echo "<div class=\"p-3\">";
+        echo "Traitement terminé : <br>";
+        echo "- Invalides : " . "<a class=\"button is-success is-dark is-small\"href=\"fichier\\Invalides.csv\" download=\"Fichier_Des_Invalides\">Télécharger</a>". "<br>";
         //Récupération des colonnes qui nous intéresses
         $csvArray = getNPTMA($valide);
         if ($csvArray) {
@@ -44,8 +52,8 @@ function main($target_file, $listId, $apikey){
             $httpCode = $res[0];
             $response = $res[1];
             $check = $adherent->checkContact($csvArray, $email, $nom, $prenom);
-            if (!empty($check)) {
-                echo "- Vérification : " . $verification . "<br>";
+            if (!empty($check)) { 
+                echo "- Vérification : " . "<a href=\"fichier\\verification.csv\" download=\"Fichier_De_Vérification\">Télécharger</a>" . "<br>";
                 echo "Attention tous les contacts n'ont pas été importer";
             }
 
@@ -58,9 +66,11 @@ function main($target_file, $listId, $apikey){
             // Si le code HTTP est 202, l'import a été lancé avec succès
             if ($httpCode === 202) {
                 echo "Import lancé avec succès\n";
+                echo "</div>";
             } else {
                 // Sinon on affiche le code HTTP reçu (autres réponses possibles)
                 echo "Réponse HTTP $httpCode reçue\n";
+                echo "</div>";
             }
             //suppression du fichier valide
             unlink($valide);
