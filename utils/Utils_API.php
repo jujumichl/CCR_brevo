@@ -58,7 +58,7 @@ class Adherents{
 
             //Regarde si le code http est supérieur a 400, si c'est le cas il renvoie le code ainsi que l'offset auquel c'est arrivé
             if ($httpCode >= 400) {
-                echo "Erreur HTTP $httpCode lors de la récupération des contacts (offset $offset).\n";
+                echo "<div p-3>Erreur HTTP $httpCode lors de la récupération des contacts (offset $offset).</div>\n";
                 exit;
             }
 
