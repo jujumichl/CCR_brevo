@@ -52,7 +52,7 @@ function main($target_file, $listId, $apikey){
                 $response = $res[1];
                 $check = $adherent->checkContact($csvArray, $email, $nom, $prenom);
                 if (!empty($check)) { 
-                    echo "- Vérification : " . "<a href=\"fichier\\verification.csv\" download=\"Fichier_De_Vérification\">Télécharger</a>" . "<br>";
+                    echo "- Vérification : " . "<a class=\"button is-success is-dark is-small\" href=\"fichier\\verification.csv\" download=\"Fichier_De_Vérification\">Télécharger</a>" . "<br>";
                     echo "Attention tous les contacts n'ont pas été importer<br>";
                 }
                 else{
