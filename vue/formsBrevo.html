@@ -1,33 +1,32 @@
 <!-- Formulaire -->
-<div class="p-3">
-    <form action="index.php?uc=upload" method="post" enctype="multipart/form-data">
-        <div class="field">
-            <label class="label" for="fileToUpload">Veuillez séléctionner votre fichier excel au format CSV:</label>
-            <div class="control">
-                <input class="input is-rounded" type="file" name="fileToUpload" id="fileToUpload" placeholder="Fichier CSV" required>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label" for="list">Veuillez entrer votre clé API de brevo :</label>
-                <div class="control">
-                    <input class="input is-rounded" type="password" id="API" name="API" placeholder="Clé API" required>
-                </div>
-        </div>
+<form action="index.php?uc=upload" method="post" enctype="multipart/form-data">
+    
+    <label for="fileToUpload">
+    <span>Veuillez séléctionner votre fichier excel au format CSV:</span>
+    <br/>
+        <input class="file is-rounded" type="file" name="fileToUpload" id="fileToUpload" placeholder="Fichier CSV" required>
+    </label>
+    <br/>
+    
+    <label for="list">Veuillez entrer votre clé API de brevo :</label>
+    <div class="control">
+        <input class="is-rounded" type="password" id="API" name="API" placeholder="Clé API" required>
+    </div>
+    <br/>
 
-        <div class="field">
-        <label class="label"for="API">Veuillez entrer l'identifiant de la liste Brevo a laquelle vous souhaitez ajouter votre liste de contact : </label>
+    <label class="label"for="API">Veuillez entrer l'identifiant de la liste Brevo a laquelle vous souhaitez ajouter votre liste de contact : </label>
+    <div class="control">
+        <input class="is-rounded int" type="number" id="idlist" name="idlist" min="0" max="20000" placeholder="Identifiant de la liste" required>
+    </div>
+    <br/>
+    
+    <div class="is-grouped">
         <div class="control">
-            <input class="input is-rounded" type="number" id="idlist" name="idlist" min="0" max="20000" placeholder="Identifiant de la liste" required>
+            <button class="button blue">Importer</button>
         </div>
+        <div class="control">
+            <button class="button light" type="reset">Annuler</button>
         </div>
-
-        <div class="field is-grouped">
-            <div class="control">
-                <button class="button is-link">Importer</button>
-            </div>
-            <div class="control">
-                <button class="button is-link is-light" type="reset">Annuler</button>
-            </div>
-        </div>
-    </form>
-</div>
+    </div>
+</form>
+<br>
